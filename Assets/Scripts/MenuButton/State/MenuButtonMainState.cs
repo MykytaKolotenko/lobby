@@ -1,4 +1,6 @@
-﻿namespace MenuButton.State
+﻿using Core;
+
+namespace MenuButton.State
 {
     public class MenuButtonMainState : AbstractMenuButtonState
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Abstractions
+namespace Core
 {
     public abstract class AbstractLobbyState<T> : MonoBehaviour
     {

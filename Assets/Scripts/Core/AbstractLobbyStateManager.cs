@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Abstractions
+namespace Core
 {
     public abstract class AbstractLobbyStateManager<T> : MonoBehaviour
     {

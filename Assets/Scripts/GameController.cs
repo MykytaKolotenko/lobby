@@ -1,41 +1,41 @@
 using Configs;
-using Currency;
+using Core;
+using DefaultNamespace;
 using MenuButton;
-using Storage.Character;
-using Storage.User;
 using Tabs;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameController : MonoBehaviour
 {
+    [Header("State")]
     [SerializeField] private MenuButtonStateManager menuButtonStateManager;
     [SerializeField] private TabsStateManager tabsStateManager;
 
-    [Header("Presenters")]
-    [SerializeField] private CurrencyPresenter currencyPresenter;
+    [Header("PresenterBase")]
+    [SerializeField] private PresenterBase presenterBase;
 
-    [FormerlySerializedAs("config")]
-    [FormerlySerializedAs("configDatabase")]
     [Header("Configs")]
-    [SerializeField] private MainConfig mainConfig;
+    [SerializeField] public MainConfig mainConfig;
 
-    private CharacterStorage _characterStorage;
-    private UserStorage _userStorage;
+    public StorageBase StorageBase { get; private set; }
 
     private void Awake()
     {
-        _characterStorage = new CharacterStorage(mainConfig.characterStatsConfig);
-        _userStorage = new UserStorage(mainConfig.Currency);
+        StorageBase = new StorageBase(this);
+        presenterBase.Init(this);
 
-        currencyPresenter.Init(_userStorage);
-        tabsStateManager.Init(_characterStorage);
+        presenterBase.Subscribe();
     }
 
     private void Start()
     {
         tabsStateManager.SetState(mainConfig.InitState);
         menuButtonStateManager.SetState(mainConfig.InitState);
+    }
+
+    private void OnDestroy()
+    {
+        presenterBase.Unsubscribe();
     }
 
     private void OnEnable()

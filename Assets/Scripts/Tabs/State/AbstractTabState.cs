@@ -1,4 +1,4 @@
-﻿using Abstractions;
+﻿using Core;
 
 namespace Tabs.State
 {

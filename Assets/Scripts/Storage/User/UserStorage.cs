@@ -4,13 +4,13 @@ namespace Storage.User
 {
     public class UserStorage : IUserStorage
     {
-        public int Currency { get; private set; }
+        public int Value { get; private set; }
 
-        public event Action<int> OnCurrencyChanged;
+        public event Action<int> OnValueChanged;
 
         public UserStorage(int currency)
         {
-            Currency = currency;
+            Value = currency;
         }
     }
 }

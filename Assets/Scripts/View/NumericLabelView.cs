@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Currency
+namespace View
 {
-    public class CurrencyView : MonoBehaviour
+    public class NumericLabelView : MonoBehaviour, INumericLabel
     {
         [SerializeField] private TextMeshProUGUI label;
 

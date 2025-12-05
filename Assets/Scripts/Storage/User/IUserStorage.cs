@@ -4,8 +4,8 @@ namespace Storage.User
 {
     public interface IUserStorage
     {
-        public int Currency { get; }
+        public int Value { get; }
 
-        public event Action<int> OnCurrencyChanged;
+        public event Action<int> OnValueChanged;
     }
 }

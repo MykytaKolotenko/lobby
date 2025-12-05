@@ -1,4 +1,6 @@
-﻿namespace Tabs.State
+﻿using Core;
+
+namespace Tabs.State
 {
     public class InventoryTabState : AbstractTabState<TabsStateManager>
     {
