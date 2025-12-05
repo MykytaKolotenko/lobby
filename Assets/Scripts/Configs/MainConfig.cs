@@ -10,5 +10,7 @@ namespace Configs
         [field: SerializeField] public EMenuState InitState { get; private set; }
 
         public CharacterStatsConfig characterStatsConfig;
+        public ParamsConverterConfig paramsConverterConfig;
+        public ItemDatabase itemDatabase;
     }
 }

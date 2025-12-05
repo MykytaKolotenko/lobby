@@ -18,12 +18,12 @@ namespace Presenter
 
         public void Subscribe()
         {
-            _userStorage.OnValueChanged += SetCurrency;
+            _userStorage.ValueChanged += SetCurrency;
         }
 
         public void Unsubscribe()
         {
-            _userStorage.OnValueChanged -= SetCurrency;
+            _userStorage.ValueChanged -= SetCurrency;
         }
 
         private void SetCurrency(int value)

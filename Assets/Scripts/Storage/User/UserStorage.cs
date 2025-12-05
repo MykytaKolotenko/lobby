@@ -4,13 +4,32 @@ namespace Storage.User
 {
     public class UserStorage : IUserStorage
     {
-        public int Value { get; private set; }
+        private int _currency;
 
-        public event Action<int> OnValueChanged;
+        public event Action<int> ValueChanged;
 
         public UserStorage(int currency)
         {
-            Value = currency;
+            _currency = currency;
+        }
+
+        public void Increment(int value)
+        {
+            _currency += value;
+            OnValueChanged();
+        }
+
+        public void Decrement(int value)
+        {
+            _currency -= value;
+            OnValueChanged();
+        }
+
+        public int Value => _currency;
+
+        private void OnValueChanged()
+        {
+            ValueChanged?.Invoke(_currency);
         }
     }
 }

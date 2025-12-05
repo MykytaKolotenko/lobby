@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 7249557726108985931}
   - component: {fileID: 8549861403854017271}
   - component: {fileID: 4447941739531955911}
+  - component: {fileID: 5584181554220621652}
   m_Layer: 0
   m_Name: AttackButton
   m_TagString: Untagged
@@ -291,8 +292,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7451856271815473434}
-        m_TargetAssemblyTypeName: Tabs.State.MainTabState, Assembly-CSharp
+      - m_Target: {fileID: 5584181554220621652}
+        m_TargetAssemblyTypeName: View.AttackButtonView, Assembly-CSharp
         m_MethodName: OnAttackClicked
         m_Mode: 1
         m_Arguments:
@@ -303,6 +304,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5584181554220621652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6057189283842366230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a511cdabfc7459a94b61443685638bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8971677071581247260
 GameObject:
   m_ObjectHideFlags: 0

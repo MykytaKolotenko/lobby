@@ -1,8 +1,10 @@
-﻿using Configs;
+﻿using System;
+using Configs;
 using UnityEngine;
 
 namespace Storage.Character.Data
 {
+    [Serializable]
     public struct CharacterParams
     {
         [field: SerializeField] public int Health { get; private set; }

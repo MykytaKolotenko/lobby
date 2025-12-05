@@ -5,26 +5,26 @@ using MenuButton;
 using Tabs;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameRoot : MonoBehaviour
 {
     [Header("State")]
     [SerializeField] private MenuButtonStateManager menuButtonStateManager;
     [SerializeField] private TabsStateManager tabsStateManager;
 
-    [Header("PresenterBase")]
-    [SerializeField] private PresenterBase presenterBase;
+    [Header("PresenterHost")]
+    [SerializeField] private PresenterHost presenterHost;
 
     [Header("Configs")]
     [SerializeField] public MainConfig mainConfig;
 
-    public StorageBase StorageBase { get; private set; }
+    public GameStorage GameStorage { get; private set; }
 
     private void Awake()
     {
-        StorageBase = new StorageBase(this);
-        presenterBase.Init(this);
+        GameStorage = new GameStorage(this);
+        presenterHost.Init(this);
 
-        presenterBase.Subscribe();
+        presenterHost.Subscribe();
     }
 
     private void Start()
@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
 
     private void OnDestroy()
     {
-        presenterBase.Unsubscribe();
+        presenterHost.Unsubscribe();
     }
 
     private void OnEnable()
