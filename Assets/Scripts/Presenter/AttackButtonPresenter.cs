@@ -8,13 +8,13 @@ namespace Presenter
 {
     public class AttackButtonPresenter
     {
-        private AttackButtonView _view;
+        private ButtonView _view;
         private UserStorage _userStorage;
         private CharacterStorage _characterStorage;
         private ParamsConverterConfig _config;
 
         public AttackButtonPresenter(
-            AttackButtonView view,
+            ButtonView view,
             UserStorage userStorage,
             CharacterStorage characterStorage,
             ParamsConverterConfig paramsConverterConfig
@@ -28,15 +28,15 @@ namespace Presenter
 
         public void Subscribe()
         {
-            _view.AttackClicked += OnAttackClicked;
+            _view.ButtonClicked += OnButtonClicked;
         }
 
         public void Unsubscribe()
         {
-            _view.AttackClicked -= OnAttackClicked;
+            _view.ButtonClicked -= OnButtonClicked;
         }
 
-        private void OnAttackClicked()
+        private void OnButtonClicked()
         {
             int currencyDelta = CurrencyUtils.EvaluateGoldFromParams(_characterStorage.CurrentCharacterParams, _config);
 

@@ -3,12 +3,13 @@ using Presenter;
 using Storage.Character;
 using Storage.User;
 using UnityEngine;
+using UnityEngine.Serialization;
 using View;
 
 public class PresenterHost : MonoBehaviour
 {
     [SerializeField] private NumericLabelView currencyView;
-    [SerializeField] private AttackButtonView attackButtonView;
+    [FormerlySerializedAs("attackButtonView")] [SerializeField] private ButtonView buttonView;
 
     private GameRoot _gameRoot;
 
@@ -25,7 +26,7 @@ public class PresenterHost : MonoBehaviour
     private void Register()
     {
         CurrencyPresenter = new NumericPresenter(UserStorage, currencyView);
-        AttackButtonPresenter = new AttackButtonPresenter(attackButtonView, UserStorage, CharacterStorage, MainConfig.paramsConverterConfig);
+        AttackButtonPresenter = new AttackButtonPresenter(buttonView, UserStorage, CharacterStorage, MainConfig.paramsConverterConfig);
     }
 
     public void Subscribe()

@@ -1,7 +1,7 @@
 ﻿using System;
 using Core;
 
-namespace Tabs.State
+namespace LobbyState.Tabs.State
 {
     public class MainTabState : AbstractTabState<TabsStateManager>
     {

@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Tabs.State
+namespace LobbyState.Tabs.State
 {
     public class InventoryTabState : AbstractTabState<TabsStateManager>
     {

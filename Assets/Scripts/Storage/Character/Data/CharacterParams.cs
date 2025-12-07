@@ -1,15 +1,14 @@
 ﻿using System;
 using Configs;
-using UnityEngine;
 
 namespace Storage.Character.Data
 {
     [Serializable]
     public struct CharacterParams
     {
-        [field: SerializeField] public int Health { get; private set; }
-        [field: SerializeField] public int Armor { get; private set; }
-        [field: SerializeField] public int Damage { get; private set; }
+        public int Health;
+        public int Armor;
+        public int Damage;
 
         public CharacterParams(int health, int armor, int damage)
         {
@@ -21,6 +20,11 @@ namespace Storage.Character.Data
         public static CharacterParams ConvertFromConfig(CharacterStatsConfig config)
         {
             return new CharacterParams(config.Health, config.Armor, config.Damage);
+        }
+
+        public readonly CharacterParams Clone()
+        {
+            return new CharacterParams(Health, Armor, Damage);
         }
     }
 }

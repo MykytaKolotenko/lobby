@@ -294,7 +294,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5584181554220621652}
         m_TargetAssemblyTypeName: View.AttackButtonView, Assembly-CSharp
-        m_MethodName: OnAttackClicked
+        m_MethodName: OnButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a511cdabfc7459a94b61443685638bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 4447941739531955911}
 --- !u!1 &8971677071581247260
 GameObject:
   m_ObjectHideFlags: 0

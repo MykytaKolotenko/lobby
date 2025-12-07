@@ -1,13 +1,13 @@
 using System;
 using Core;
 
-namespace MenuButton
+namespace LobbyState.MenuButton
 {
     public class MenuButtonStateManager : AbstractLobbyStateManager<MenuButtonStateManager>
     {
         public event Action<EMenuState> OnStateChanged;
 
-        protected override void InitStates()
+        public override void Init()
         {
             foreach (AbstractLobbyState<MenuButtonStateManager> abstractMenuButtonState in states)
             {

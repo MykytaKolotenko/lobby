@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Tabs.State
+namespace LobbyState.Tabs.State
 {
     public abstract class AbstractTabState<T> : AbstractLobbyState<T>
     {

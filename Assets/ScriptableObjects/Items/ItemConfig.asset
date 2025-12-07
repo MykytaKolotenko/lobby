@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09511f4a191744aba3c50e7c181c2b42, type: 3}
   m_Name: ItemConfig
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: e1267828-629b-4517-ad39-63ad9ccff3ec
   <ItemPrefab>k__BackingField: {fileID: 8857281556285276131, guid: 480d9d95665fd59419864124c2d96d84, type: 3}
   <Icon>k__BackingField: {fileID: 0}
   <Name>k__BackingField: helmet
   <Description>k__BackingField: common helmet
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 100
   <Params>k__BackingField:
     <Health>k__BackingField: 0
-    <Armor>k__BackingField: 0
+    <Armor>k__BackingField: 10
     <Damage>k__BackingField: 0

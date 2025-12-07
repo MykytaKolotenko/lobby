@@ -9,12 +9,7 @@ namespace Core
 
         private AbstractLobbyState<T> _currentState;
 
-        private void Awake()
-        {
-            InitStates();
-        }
-
-        protected abstract void InitStates();
+        public abstract void Init();
 
         public virtual void SetState(EMenuState state)
         {

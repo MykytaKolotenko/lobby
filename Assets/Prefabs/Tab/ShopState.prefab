@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7906931968583955735}
   - component: {fileID: 4101102108180823425}
+  - component: {fileID: 991505802022602599}
   m_Layer: 0
   m_Name: ShopState
   m_TagString: Untagged
@@ -125,6 +126,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fd07af5c654287b035ee93ccf0198e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &991505802022602599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5694616018583278305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489beecebdd94ea39300875b3d889761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5519173464786585164}
 --- !u!1 &7890837996560929104
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +257,6 @@ GameObject:
   - component: {fileID: 4173115408060615233}
   - component: {fileID: 1997439672575830832}
   - component: {fileID: 6736884911732695490}
-  - component: {fileID: 7507149792142464413}
   m_Layer: 0
   m_Name: ShopGridContainer
   m_TagString: Untagged
@@ -293,19 +306,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679992680651475156}
   m_CullTransparentMesh: 1
---- !u!114 &7507149792142464413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679992680651475156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489beecebdd94ea39300875b3d889761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 5519173464786585164}
 --- !u!1001 &7896254044069426923
 PrefabInstance:
   m_ObjectHideFlags: 0

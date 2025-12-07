@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace MenuButton.State
+namespace LobbyState.MenuButton.State
 {
     public class MenuButtonInventoryState : AbstractMenuButtonState
     {

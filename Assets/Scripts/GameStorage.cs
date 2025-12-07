@@ -1,4 +1,5 @@
-﻿using Storage.Character;
+﻿using Configs;
+using Storage.Character;
 using Storage.User;
 
 namespace DefaultNamespace
@@ -10,12 +11,14 @@ namespace DefaultNamespace
         public CharacterStorage CharacterStorage { get; private set; }
         public UserStorage UserStorage { get; private set; }
 
+        private MainConfig MainConfig => _gameRoot.mainConfig;
+
         public GameStorage(GameRoot gameRoot)
         {
             _gameRoot = gameRoot;
 
-            CharacterStorage = new CharacterStorage(_gameRoot.mainConfig.characterStatsConfig);
-            UserStorage = new UserStorage(_gameRoot.mainConfig.Currency);
+            CharacterStorage = new CharacterStorage(MainConfig.characterStatsConfig, MainConfig.itemDatabase);
+            UserStorage = new UserStorage(MainConfig.Currency);
         }
     }
 }

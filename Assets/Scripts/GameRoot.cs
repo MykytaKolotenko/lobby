@@ -1,15 +1,12 @@
 using Configs;
-using Core;
 using DefaultNamespace;
-using MenuButton;
-using Tabs;
+using LobbyState;
 using UnityEngine;
 
 public class GameRoot : MonoBehaviour
 {
     [Header("State")]
-    [SerializeField] private MenuButtonStateManager menuButtonStateManager;
-    [SerializeField] private TabsStateManager tabsStateManager;
+    [SerializeField] private LobbyStateController lobbyStateController;
 
     [Header("PresenterHost")]
     [SerializeField] private PresenterHost presenterHost;
@@ -24,32 +21,16 @@ public class GameRoot : MonoBehaviour
         GameStorage = new GameStorage(this);
         presenterHost.Init(this);
 
-        presenterHost.Subscribe();
-    }
-
-    private void Start()
-    {
-        tabsStateManager.SetState(mainConfig.InitState);
-        menuButtonStateManager.SetState(mainConfig.InitState);
-    }
-
-    private void OnDestroy()
-    {
-        presenterHost.Unsubscribe();
+        lobbyStateController.Init(mainConfig.InitState);
     }
 
     private void OnEnable()
     {
-        menuButtonStateManager.OnStateChanged += StateChanged;
+        presenterHost.Subscribe();
     }
 
     private void OnDisable()
     {
-        menuButtonStateManager.OnStateChanged -= StateChanged;
-    }
-
-    private void StateChanged(EMenuState state)
-    {
-        tabsStateManager.SetState(state);
+        presenterHost.Unsubscribe();
     }
 }

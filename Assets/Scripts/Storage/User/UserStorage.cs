@@ -25,6 +25,21 @@ namespace Storage.User
             OnValueChanged();
         }
 
+        public bool IsPurchaseAvailable(int value)
+        {
+            return _currency >= value;
+        }
+
+        public bool TryPurchase(int value)
+        {
+            if (!IsPurchaseAvailable(value)) return false;
+
+            _currency -= value;
+            OnValueChanged();
+
+            return true;
+        }
+
         public int Value => _currency;
 
         private void OnValueChanged()

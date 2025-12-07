@@ -1,7 +1,7 @@
 ﻿using Core;
 using UnityEngine;
 
-namespace MenuButton.State
+namespace LobbyState.MenuButton.State
 {
     public abstract class AbstractMenuButtonState : AbstractLobbyState<MenuButtonStateManager>
     {

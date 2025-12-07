@@ -1,13 +1,10 @@
-﻿using System;
-using Core;
+﻿using Core;
 
-namespace Tabs
+namespace LobbyState.Tabs
 {
     public class TabsStateManager : AbstractLobbyStateManager<TabsStateManager>
     {
-        public event Action UpdateGold;
-
-        protected override void InitStates()
+        public override void Init()
         {
             foreach (AbstractLobbyState<TabsStateManager> abstractMenuButtonState in states)
             {

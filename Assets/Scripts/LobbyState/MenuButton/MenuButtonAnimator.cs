@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MenuButton
+namespace LobbyState.MenuButton
 {
     public class MenuButtonAnimator : MonoBehaviour
     {
