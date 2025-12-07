@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace View
 {
-    public class ShopItemView : MonoBehaviour
+    public class ShopItemView : MonoBehaviour, IPurchasableView
     {
         [SerializeField] private Image spriteIcon;
         [SerializeField] private TextMeshProUGUI nameLabel;
@@ -19,7 +19,7 @@ namespace View
 
         public string Id { get; private set; }
 
-        public event Action<string> ItemClicked;
+        public event Action OnPurchaseClicked;
 
         private void OnEnable()
         {
@@ -33,18 +33,13 @@ namespace View
 
         private void OnButtonClicked()
         {
-            ItemClicked?.Invoke(Id);
+            OnPurchaseClicked?.Invoke();
         }
 
         public void Init(ItemConfig config)
         {
             Id = config.Id;
             UpdateView(config);
-        }
-
-        public void Dispose()
-        {
-            Destroy(gameObject);
         }
 
         private void UpdateView(ItemConfig config)
@@ -56,6 +51,13 @@ namespace View
             atkLabel.text = config.Params.Damage.ToString();
             defLabel.text = config.Params.Armor.ToString();
             hpLabel.text = config.Params.Health.ToString();
+        }
+
+        public void UpdatePriceView(bool isAvailable)
+        {
+            if (buttonView.Interactable == isAvailable) return;
+
+            buttonView.Interactable = isAvailable;
         }
     }
 }

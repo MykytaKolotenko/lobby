@@ -2309,3 +2309,4 @@ MonoBehaviour:
   atkLabel: {fileID: 924456336304428490}
   defLabel: {fileID: 7289707474482440990}
   hpLabel: {fileID: 7646587635775793032}
+  buttonView: {fileID: 7336677107340361039}

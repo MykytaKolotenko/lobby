@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Configs
@@ -6,7 +7,7 @@ namespace Configs
     [CreateAssetMenu(fileName = "ItemDatabase", menuName = "Configs/ItemDatabase")]
     public class ItemDatabase : ScriptableObject
     {
-        public ItemConfig[] items;
+        public List<ItemConfig> items;
 
         public ItemConfig GetItemById(string id)
         {

@@ -1,40 +1,49 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Configs;
 using Factory;
-using UnityEngine;
+using Storage.Item;
+using Storage.User;
 using View;
 
 namespace Presenter
 {
     public class ShopPresenter
     {
-        private ShopView _view;
-        private ShopItemFactory _viewFactory;
-        private ItemDatabase _config;
+        private readonly UserStorage _userStorage;
+        private readonly ShopView _view;
+        private readonly ShopItemFactory _viewFactory;
+        private readonly ItemStorage _itemStorage;
+        private readonly List<PurchasePresenter> _itemsPresenters = new List<PurchasePresenter>();
 
-        private readonly List<ShopItemPresenter> _shopItems = new List<ShopItemPresenter>();
-
-        public ShopPresenter(ShopView view, ItemDatabase config)
+        public ShopPresenter(ShopView view, UserStorage userStorage, ItemStorage itemStorage)
         {
             _viewFactory = new ShopItemFactory();
             _view = view;
-            _config = config;
+            _itemStorage = itemStorage;
+            _userStorage = userStorage;
 
-            Init();
+            CreateItems(_itemStorage.Items);
         }
 
-        public void Dispose()
+        public void Subscribe()
         {
-            _shopItems.ToList().ForEach(DestroyItem);
+            _userStorage.ValueChanged += CurrencyChanged;
         }
 
-        private void Init()
+        public void Unsubscribe()
         {
-            CreateItems(_config.items);
+            _userStorage.ValueChanged -= CurrencyChanged;
         }
 
-        private void CreateItems(ItemConfig[] items)
+        private void CurrencyChanged()
+        {
+            foreach (PurchasePresenter purchasePresenter in _itemsPresenters)
+            {
+                purchasePresenter.UpdateItem();
+            }
+        }
+
+        private void CreateItems(List<ItemConfig> items)
         {
             foreach (ItemConfig itemConfig in items)
             {
@@ -46,28 +55,10 @@ namespace Presenter
         {
             ShopItemView shopItemView = _viewFactory.Create(itemConfig, _view.parent);
 
-            ShopItemPresenter shopItemPresenter = new ShopItemPresenter(shopItemView, itemConfig);
-            _shopItems.Add(shopItemPresenter);
+            PurchasePresenter shopItemPresenter = new PurchasePresenter(_userStorage, _itemStorage, itemConfig, shopItemView);
+            _itemsPresenters.Add(shopItemPresenter);
 
-            SetItemAvailability(shopItemPresenter);
-
-            shopItemPresenter.ItemClicked += OnItemClicked;
-        }
-
-        private void DestroyItem(ShopItemPresenter presenter)
-        {
-            presenter.Dispose();
-            _shopItems.Remove(presenter);
-            presenter.ItemClicked -= OnItemClicked;
-        }
-
-        private void OnItemClicked(string obj)
-        {
-            Debug.Log($"Item clicked: {obj}");
-        }
-
-        private void SetItemAvailability(ShopItemPresenter presenter)
-        {
+            shopItemPresenter.Subscribe();
         }
     }
 }

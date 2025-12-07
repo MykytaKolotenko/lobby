@@ -6,6 +6,6 @@ namespace Storage.User
     {
         public int Value { get; }
 
-        public event Action<int> ValueChanged;
+        public event Action ValueChanged;
     }
 }

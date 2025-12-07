@@ -6,7 +6,7 @@ namespace Storage.User
     {
         private int _currency;
 
-        public event Action<int> ValueChanged;
+        public event Action ValueChanged;
 
         public UserStorage(int currency)
         {
@@ -25,26 +25,16 @@ namespace Storage.User
             OnValueChanged();
         }
 
-        public bool IsPurchaseAvailable(int value)
+        public bool HasEnoughCurrency(int value)
         {
             return _currency >= value;
-        }
-
-        public bool TryPurchase(int value)
-        {
-            if (!IsPurchaseAvailable(value)) return false;
-
-            _currency -= value;
-            OnValueChanged();
-
-            return true;
         }
 
         public int Value => _currency;
 
         private void OnValueChanged()
         {
-            ValueChanged?.Invoke(_currency);
+            ValueChanged?.Invoke();
         }
     }
 }

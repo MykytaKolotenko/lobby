@@ -8,12 +8,12 @@ namespace Presenter
         private INumericLabel _view;
         private IUserStorage _userStorage;
 
-        public NumericPresenter(IUserStorage userStorage, INumericLabel view)
+        public NumericPresenter(INumericLabel view, IUserStorage userStorage)
         {
             _userStorage = userStorage;
             _view = view;
 
-            SetCurrency(_userStorage.Value);
+            SetCurrency();
         }
 
         public void Subscribe()
@@ -26,7 +26,7 @@ namespace Presenter
             _userStorage.ValueChanged -= SetCurrency;
         }
 
-        private void SetCurrency(int value)
+        private void SetCurrency()
         {
             _view.SetCurrency(_userStorage.Value);
         }

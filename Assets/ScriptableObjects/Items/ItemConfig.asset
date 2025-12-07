@@ -18,6 +18,6 @@ MonoBehaviour:
   <Description>k__BackingField: common helmet
   <Price>k__BackingField: 100
   <Params>k__BackingField:
-    <Health>k__BackingField: 0
-    <Armor>k__BackingField: 10
-    <Damage>k__BackingField: 0
+    Health: 10
+    Armor: 20
+    Damage: 30
