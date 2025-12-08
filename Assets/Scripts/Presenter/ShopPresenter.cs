@@ -13,11 +13,13 @@ namespace Presenter
         private readonly ShopView _view;
         private readonly ShopItemFactory _viewFactory;
         private readonly ItemStorage _itemStorage;
+        private readonly PrefabDatabase _prefabDatabase;
         private readonly List<PurchasePresenter> _itemsPresenters = new List<PurchasePresenter>();
 
-        public ShopPresenter(ShopView view, UserStorage userStorage, ItemStorage itemStorage)
+        public ShopPresenter(ShopView view, UserStorage userStorage, ItemStorage itemStorage, PrefabDatabase prefabDatabase)
         {
-            _viewFactory = new ShopItemFactory();
+            _prefabDatabase = prefabDatabase;
+            _viewFactory = new ShopItemFactory(prefabDatabase.ShopItemPrefab);
             _view = view;
             _itemStorage = itemStorage;
             _userStorage = userStorage;

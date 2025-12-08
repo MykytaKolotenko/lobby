@@ -1,5 +1,6 @@
 ﻿using System;
 using Storage.Character.Data;
+using Storage.Item;
 using UnityEngine;
 
 namespace Configs
@@ -9,7 +10,7 @@ namespace Configs
     {
         public string Id { get; private set; }
 
-        [field: SerializeField] public GameObject ItemPrefab { get; private set; }
+        [field: SerializeField] public EItemType Type { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }

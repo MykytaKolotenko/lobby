@@ -5,9 +5,16 @@ namespace Factory
 {
     public class ViewFactory<T, C> where T : MonoBehaviour where C : ItemConfig
     {
-        public T Create(C config, Transform parent)
+        private GameObject _prefab;
+
+        public ViewFactory(GameObject prefab)
         {
-            GameObject gameObject = Object.Instantiate(config.ItemPrefab, parent);
+            _prefab = prefab;
+        }
+
+        public T Create(Transform parent)
+        {
+            GameObject gameObject = Object.Instantiate(_prefab, parent);
 
             T component = gameObject.GetComponent<T>();
 

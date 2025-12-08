@@ -5,18 +5,22 @@ using Storage.Item;
 using Storage.User;
 using UnityEngine;
 using View;
+using View.Inventory;
 
 public class PresenterHost : MonoBehaviour
 {
     [SerializeField] private NumericLabelView currencyView;
     [SerializeField] private ButtonView buttonView;
     [SerializeField] private ShopView shopView;
+    [SerializeField] private InventoryView inventoryView;
 
     private GameRoot _gameRoot;
 
     public NumericPresenter CurrencyPresenter { get; private set; }
     public AttackButtonPresenter AttackButtonPresenter { get; private set; }
     public ShopPresenter ShopPresenter { get; private set; }
+
+    public InventoryPresenter InventoryPresenter { get; private set; }
 
     private UserStorage UserStorage => _gameRoot.GameStorage.UserStorage;
     private CharacterStorage CharacterStorage => _gameRoot.GameStorage.CharacterStorage;
@@ -34,7 +38,8 @@ public class PresenterHost : MonoBehaviour
     {
         CurrencyPresenter = new NumericPresenter(currencyView, UserStorage);
         AttackButtonPresenter = new AttackButtonPresenter(buttonView, UserStorage, CharacterStorage, MainConfig.paramsConverterConfig);
-        ShopPresenter = new ShopPresenter(shopView, UserStorage, ItemStorage);
+        ShopPresenter = new ShopPresenter(shopView, UserStorage, ItemStorage, MainConfig.prefabDatabase);
+        InventoryPresenter = new InventoryPresenter(inventoryView, ItemStorage, MainConfig.prefabDatabase);
     }
 
     public void Subscribe()
@@ -42,6 +47,7 @@ public class PresenterHost : MonoBehaviour
         CurrencyPresenter.Subscribe();
         AttackButtonPresenter.Subscribe();
         ShopPresenter.Subscribe();
+        InventoryPresenter.Subscribe();
     }
 
     public void Unsubscribe()
@@ -49,5 +55,6 @@ public class PresenterHost : MonoBehaviour
         CurrencyPresenter.Unsubscribe();
         AttackButtonPresenter.Unsubscribe();
         ShopPresenter.Unsubscribe();
+        InventoryPresenter.Unsubscribe();
     }
 }

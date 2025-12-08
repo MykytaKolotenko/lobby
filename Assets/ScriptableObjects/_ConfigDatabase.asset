@@ -17,3 +17,4 @@ MonoBehaviour:
   characterStatsConfig: {fileID: 11400000, guid: 2a759592c7b096441ae17188cddeee3b, type: 2}
   paramsConverterConfig: {fileID: 11400000, guid: 38ecb23dda79cae458179668e1576690, type: 2}
   itemDatabase: {fileID: 11400000, guid: d1408089cc3cc5c48a7b7626b7005f14, type: 2}
+  prefabDatabase: {fileID: 11400000, guid: 5a0d289401023084f9785eedf7782d6d, type: 2}

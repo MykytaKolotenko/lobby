@@ -12,5 +12,6 @@ namespace Configs
         public CharacterStatsConfig characterStatsConfig;
         public ParamsConverterConfig paramsConverterConfig;
         public ItemDatabase itemDatabase;
+        public PrefabDatabase prefabDatabase;
     }
 }
