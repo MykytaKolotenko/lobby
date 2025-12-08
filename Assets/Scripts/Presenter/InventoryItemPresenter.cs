@@ -2,7 +2,7 @@
 using Configs;
 using Storage.Item;
 using UnityEngine;
-using View.Inventory;
+using View;
 
 namespace Presenter
 {

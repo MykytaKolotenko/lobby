@@ -2,7 +2,7 @@
 using Storage.Item;
 using UnityEngine;
 
-namespace Presenter
+namespace View
 {
     [Serializable]
     public struct EquippedItemsPos

@@ -3,7 +3,7 @@ using Configs;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace View.Inventory
+namespace View
 {
     public class InventoryItemView : MonoBehaviour
     {

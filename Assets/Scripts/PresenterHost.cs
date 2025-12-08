@@ -5,7 +5,6 @@ using Storage.Item;
 using Storage.User;
 using UnityEngine;
 using View;
-using View.Inventory;
 
 public class PresenterHost : MonoBehaviour
 {
@@ -39,7 +38,7 @@ public class PresenterHost : MonoBehaviour
         CurrencyPresenter = new NumericPresenter(currencyView, UserStorage);
         AttackButtonPresenter = new AttackButtonPresenter(buttonView, UserStorage, CharacterStorage, MainConfig.paramsConverterConfig);
         ShopPresenter = new ShopPresenter(shopView, UserStorage, ItemStorage, MainConfig.prefabDatabase);
-        InventoryPresenter = new InventoryPresenter(inventoryView, ItemStorage, MainConfig.prefabDatabase);
+        InventoryPresenter = new InventoryPresenter(inventoryView, ItemStorage, CharacterStorage, MainConfig.prefabDatabase);
     }
 
     public void Subscribe()

@@ -1,45 +1,55 @@
 ﻿using System.Collections.Generic;
 using Configs;
 using Factory;
+using Storage.Character;
 using Storage.Item;
-using View.Inventory;
+using View;
 
 namespace Presenter
 {
     public class InventoryPresenter
     {
-        private readonly ItemStorage _storage;
+        private readonly ItemStorage _itemStorage;
+        private readonly CharacterStorage _characterStorage;
         private readonly InventoryItemFactory _factory;
         private readonly InventoryView _view;
         private readonly PrefabDatabase _prefabDatabase;
         private readonly Dictionary<string, List<InventoryItemPresenter>> _inventoryItemPresenters;
         private readonly Dictionary<EItemType, InventoryItemPresenter> _equippedItemPresenters;
 
-        public InventoryPresenter(InventoryView view, ItemStorage storage, PrefabDatabase prefabDatabase)
+        private readonly CharacterParamsPresenter _paramPresenter;
+
+        public InventoryPresenter(
+            InventoryView view,
+            ItemStorage itemStorage,
+            CharacterStorage characterStorage,
+            PrefabDatabase prefabDatabase
+        )
         {
             _prefabDatabase = prefabDatabase;
             _view = view;
-            _storage = storage;
+            _itemStorage = itemStorage;
             _factory = new InventoryItemFactory(prefabDatabase.InventoryItemPrefab);
             _inventoryItemPresenters = new Dictionary<string, List<InventoryItemPresenter>>();
             _equippedItemPresenters = new Dictionary<EItemType, InventoryItemPresenter>();
+            _paramPresenter = new CharacterParamsPresenter(_view, characterStorage);
 
             Init();
         }
 
         public void Subscribe()
         {
-            _storage.InventoryItemAdded += AddItemToInventory;
+            _itemStorage.InventoryItemAdded += AddItemToInventory;
         }
 
         public void Unsubscribe()
         {
-            _storage.InventoryItemAdded -= AddItemToInventory;
+            _itemStorage.InventoryItemAdded -= AddItemToInventory;
         }
 
         private void Init()
         {
-            foreach (KeyValuePair<string, int> storageInventoryItem in _storage.InventoryItems)
+            foreach (KeyValuePair<string, int> storageInventoryItem in _itemStorage.InventoryItems)
             {
                 for (int i = 0; i < storageInventoryItem.Value; i++)
                 {
@@ -50,7 +60,7 @@ namespace Presenter
 
         private void AddItemToInventory(string itemId)
         {
-            ItemConfig config = _storage.GetItemById(itemId);
+            ItemConfig config = _itemStorage.GetItemById(itemId);
 
             if (config == null) return;
 
@@ -124,7 +134,7 @@ namespace Presenter
 
             presenter.SetParent(_view.GetPosByType(presenter.ItemType));
 
-            _storage.EquipItem(presenter.ItemType, presenter.ItemId);
+            _itemStorage.EquipItem(presenter.ItemType, presenter.ItemId);
         }
     }
 }

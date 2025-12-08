@@ -1,6 +1,6 @@
 using Configs;
 using UnityEngine;
-using View.Inventory;
+using View;
 
 namespace Factory
 {
