@@ -5,10 +5,10 @@ namespace Presenter
 {
     public class NumericPresenter
     {
-        private INumericLabel _view;
+        private INumericLabelView _view;
         private IUserStorage _userStorage;
 
-        public NumericPresenter(INumericLabel view, IUserStorage userStorage)
+        public NumericPresenter(INumericLabelView view, IUserStorage userStorage)
         {
             _userStorage = userStorage;
             _view = view;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace View
 {
-    public class NumericLabelView : MonoBehaviour, INumericLabel
+    public class NumericLabelView : MonoBehaviour, INumericLabelView
     {
         [SerializeField] private TextMeshProUGUI label;
 
