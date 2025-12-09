@@ -1,4 +1,5 @@
-﻿using Configs;
+﻿using System.Threading.Tasks;
+using Configs;
 using Storage.Character;
 using Storage.User;
 using Utils;
@@ -9,21 +10,24 @@ namespace Presenter
     public class AttackButtonPresenter
     {
         private ButtonView _view;
+        private CharacterView _characterView;
         private UserStorage _userStorage;
         private CharacterStorage _characterStorage;
-        private ParamsConverterConfig _config;
+        private MainConfig _mainConfig;
 
         public AttackButtonPresenter(
             ButtonView view,
+            CharacterView characterView,
             UserStorage userStorage,
             CharacterStorage characterStorage,
-            ParamsConverterConfig paramsConverterConfig
+            MainConfig mainConfig
         )
         {
+            _characterView = characterView;
             _view = view;
             _userStorage = userStorage;
             _characterStorage = characterStorage;
-            _config = paramsConverterConfig;
+            _mainConfig = mainConfig;
         }
 
         public void Subscribe()
@@ -38,12 +42,23 @@ namespace Presenter
 
         private void OnButtonClicked()
         {
-            int currencyDelta = CurrencyUtils.EvaluateGoldFromParams(_characterStorage.CurrentCharacterParams, _config);
+            int currencyDelta = CoreGameUtils.EvaluateGoldFromParams(_characterStorage.CurrentParams, _mainConfig.paramsConverterConfig);
 
             if (currencyDelta > 0)
             {
                 _userStorage.Increment(currencyDelta);
             }
+
+            _view.Interactable = false;
+            _characterView.AttackAnimation();
+
+            ActivateButtonAsync();
+        }
+
+        private async void ActivateButtonAsync()
+        {
+            await Task.Delay(MathUtils.RandomNumber(_mainConfig.TapDelay.x, _mainConfig.TapDelay.y));
+            _view.Interactable = true;
         }
     }
 }

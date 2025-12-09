@@ -589,7 +589,7 @@ Canvas:
   m_GameObject: {fileID: 874720144}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1168,6 +1168,7 @@ MonoBehaviour:
   buttonView: {fileID: 41645657}
   shopView: {fileID: 2093262574}
   inventoryView: {fileID: 2039835455}
+  characterView: {fileID: 4379617049600173557}
 --- !u!114 &2005113206200263538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1422,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2045085147841323660, guid: f30adc326ab3ab644ae5eb1bbe23e903, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1531,6 +1533,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df330dc098b492d488096f1d5e5d5667, type: 3}
+--- !u!114 &4379617049600173557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4855071770895035749, guid: df330dc098b492d488096f1d5e5d5667, type: 3}
+  m_PrefabInstance: {fileID: 4379617049600173556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9423900b259b4c11a0bda6e8494d7c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6031166864596777616
 GameObject:
   m_ObjectHideFlags: 0

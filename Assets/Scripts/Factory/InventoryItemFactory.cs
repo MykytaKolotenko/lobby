@@ -10,7 +10,7 @@ namespace Factory
         {
         }
 
-        public new InventoryItemView Create(ItemConfig config, Transform parent)
+        public InventoryItemView Create(ItemConfig config, Transform parent)
         {
             InventoryItemView shopItemView = base.Create(parent);
 

@@ -14,6 +14,11 @@ namespace Presenter
             _storage = storage;
         }
 
+        public void Init()
+        {
+            _view.UpdateParams(_storage.CurrentParams);
+        }
+
         public void Subscribe()
         {
             _storage.OnParamsChanged += _view.UpdateParams;

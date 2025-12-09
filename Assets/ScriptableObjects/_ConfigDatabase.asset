@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Currency>k__BackingField: 0
   <InitState>k__BackingField: 0
+  <TapDelay>k__BackingField: {x: 300, y: 2000}
   characterStatsConfig: {fileID: 11400000, guid: 2a759592c7b096441ae17188cddeee3b, type: 2}
   paramsConverterConfig: {fileID: 11400000, guid: 38ecb23dda79cae458179668e1576690, type: 2}
   itemDatabase: {fileID: 11400000, guid: d1408089cc3cc5c48a7b7626b7005f14, type: 2}

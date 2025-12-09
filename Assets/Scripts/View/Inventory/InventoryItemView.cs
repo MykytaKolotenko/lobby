@@ -33,11 +33,6 @@ namespace View
             transform.localPosition = Vector3.zero;
         }
 
-        public void Dispose()
-        {
-            Destroy(gameObject);
-        }
-
         private void OnButtonClick()
         {
             ItemClicked?.Invoke();

@@ -29,11 +29,6 @@ namespace Presenter
             _view.OnPurchaseClicked += PurchaseItem;
         }
 
-        public void Unsubscribe()
-        {
-            _view.OnPurchaseClicked -= PurchaseItem;
-        }
-
         public void UpdateItem()
         {
             _view.UpdatePriceView(IsItemAvailable());

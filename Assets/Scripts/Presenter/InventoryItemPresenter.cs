@@ -26,11 +26,6 @@ namespace Presenter
             _view.Init(config);
         }
 
-        public void Dispose()
-        {
-            _view.Dispose();
-        }
-
         public void Subscribe()
         {
             _view.ItemClicked += OnItemClicked;

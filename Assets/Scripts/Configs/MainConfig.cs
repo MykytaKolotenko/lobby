@@ -8,6 +8,7 @@ namespace Configs
     {
         [field: SerializeField] public int Currency { get; private set; }
         [field: SerializeField] public EMenuState InitState { get; private set; }
+        [field: SerializeField] public Vector2Int TapDelay { get; private set; }
 
         public CharacterStatsConfig characterStatsConfig;
         public ParamsConverterConfig paramsConverterConfig;

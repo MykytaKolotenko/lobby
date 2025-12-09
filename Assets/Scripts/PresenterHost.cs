@@ -12,6 +12,7 @@ public class PresenterHost : MonoBehaviour
     [SerializeField] private ButtonView buttonView;
     [SerializeField] private ShopView shopView;
     [SerializeField] private InventoryView inventoryView;
+    [SerializeField] private CharacterView characterView;
 
     private GameRoot _gameRoot;
 
@@ -36,9 +37,29 @@ public class PresenterHost : MonoBehaviour
     private void Register()
     {
         CurrencyPresenter = new NumericPresenter(currencyView, UserStorage);
-        AttackButtonPresenter = new AttackButtonPresenter(buttonView, UserStorage, CharacterStorage, MainConfig.paramsConverterConfig);
-        ShopPresenter = new ShopPresenter(shopView, UserStorage, ItemStorage, MainConfig.prefabDatabase);
-        InventoryPresenter = new InventoryPresenter(inventoryView, ItemStorage, CharacterStorage, MainConfig.prefabDatabase);
+
+        AttackButtonPresenter = new AttackButtonPresenter(
+            buttonView,
+            characterView,
+            UserStorage,
+            CharacterStorage,
+            MainConfig
+        );
+
+        ShopPresenter = new ShopPresenter(
+            shopView,
+            UserStorage,
+            ItemStorage,
+            MainConfig.prefabDatabase
+        );
+
+        InventoryPresenter = new InventoryPresenter(
+            inventoryView,
+            ItemStorage,
+            CharacterStorage,
+            MainConfig.prefabDatabase,
+            new CharacterParamsPresenter(inventoryView, CharacterStorage)
+        );
     }
 
     public void Subscribe()

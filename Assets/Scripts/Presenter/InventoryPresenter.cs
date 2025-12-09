@@ -2,7 +2,9 @@
 using Configs;
 using Factory;
 using Storage.Character;
+using Storage.Character.Data;
 using Storage.Item;
+using Utils;
 using View;
 
 namespace Presenter
@@ -13,7 +15,6 @@ namespace Presenter
         private readonly CharacterStorage _characterStorage;
         private readonly InventoryItemFactory _factory;
         private readonly InventoryView _view;
-        private readonly PrefabDatabase _prefabDatabase;
         private readonly Dictionary<string, List<InventoryItemPresenter>> _inventoryItemPresenters;
         private readonly Dictionary<EItemType, InventoryItemPresenter> _equippedItemPresenters;
 
@@ -23,16 +24,18 @@ namespace Presenter
             InventoryView view,
             ItemStorage itemStorage,
             CharacterStorage characterStorage,
-            PrefabDatabase prefabDatabase
+            PrefabDatabase prefabDatabase,
+            CharacterParamsPresenter paramPresenter
         )
         {
-            _prefabDatabase = prefabDatabase;
             _view = view;
             _itemStorage = itemStorage;
+            _characterStorage = characterStorage;
+            _paramPresenter = paramPresenter;
+
             _factory = new InventoryItemFactory(prefabDatabase.InventoryItemPrefab);
             _inventoryItemPresenters = new Dictionary<string, List<InventoryItemPresenter>>();
             _equippedItemPresenters = new Dictionary<EItemType, InventoryItemPresenter>();
-            _paramPresenter = new CharacterParamsPresenter(_view, characterStorage);
 
             Init();
         }
@@ -40,11 +43,13 @@ namespace Presenter
         public void Subscribe()
         {
             _itemStorage.InventoryItemAdded += AddItemToInventory;
+            _paramPresenter.Subscribe();
         }
 
         public void Unsubscribe()
         {
             _itemStorage.InventoryItemAdded -= AddItemToInventory;
+            _paramPresenter.Unsubscribe();
         }
 
         private void Init()
@@ -56,6 +61,8 @@ namespace Presenter
                     AddItemToInventory(storageInventoryItem.Key);
                 }
             }
+
+            _paramPresenter.Init();
         }
 
         private void AddItemToInventory(string itemId)
@@ -76,7 +83,6 @@ namespace Presenter
 
             AddToInventoryDictionary(presenter);
 
-
             return presenter;
         }
 
@@ -95,34 +101,36 @@ namespace Presenter
         private void SubscribeToItem(InventoryItemPresenter presenter)
         {
             presenter.Subscribe();
-            presenter.ItemClicked += ItemClicked;
-        }
 
-        private void UnsubscribeToItem(InventoryItemPresenter presenter)
-        {
-            presenter.Unsubscribe();
-            presenter.ItemClicked -= ItemClicked;
+            presenter.ItemClicked += ItemClicked;
         }
 
         private void ItemClicked(InventoryItemPresenter presenter)
         {
             if (_equippedItemPresenters.TryGetValue(presenter.ItemType, out InventoryItemPresenter equippedPresenter))
             {
-                TryRemoveEquippedItem(equippedPresenter);
+                RemoveEquippedItem(equippedPresenter);
             }
 
-            if (equippedPresenter == presenter) return;
+            if (equippedPresenter != presenter)
+            {
+                EquipItem(presenter);
+            }
 
-            EquipItem(presenter);
+            CharacterParams newParams = CoreGameUtils.EvaluateParams(_itemStorage.GetEquippedItems(), _characterStorage.BaseParams);
+
+            _characterStorage.UpdateParams(newParams);
         }
 
-        private void TryRemoveEquippedItem(InventoryItemPresenter presenter)
+        private void RemoveEquippedItem(InventoryItemPresenter presenter)
         {
             _equippedItemPresenters.Remove(presenter.ItemType);
 
             AddToInventoryDictionary(presenter);
 
             presenter.SetParent(_view.inventoryParent);
+
+            _itemStorage.RemoveEquippedItem(presenter.ItemType);
         }
 
         private void EquipItem(InventoryItemPresenter presenter)

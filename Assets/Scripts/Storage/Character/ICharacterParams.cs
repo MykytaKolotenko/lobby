@@ -5,8 +5,7 @@ namespace Storage.Character
 {
     public interface ICharacterParams
     {
-        public CharacterParams CurrentCharacterParams { get; }
-
+        public CharacterParams CurrentParams { get; }
         public event Action<CharacterParams> OnParamsChanged;
     }
 }

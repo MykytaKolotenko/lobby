@@ -21,29 +21,23 @@ namespace Storage.Item
             _config = config;
         }
 
-        public void AddItemToInventory(string itemId)
+        public void AddItemToInventory(string itemId, bool notification = true)
         {
             if (!_inventoryItems.TryAdd(itemId, 1))
             {
                 _inventoryItems[itemId] += 1;
             }
 
+            if (!notification) return;
             InventoryItemAdded?.Invoke(itemId);
-        }
-
-        public void RemoveItemFromInventory(string itemId)
-        {
-            if (!_inventoryItems.ContainsKey(itemId)) return;
-
-            _inventoryItems[itemId] -= 1;
         }
 
         public void EquipItem(EItemType itemType, string itemId)
         {
             if (_equippedItems.TryGetValue(itemType, out string equippedItemId))
             {
-                int items = _inventoryItems[equippedItemId];
-                _inventoryItems[equippedItemId] = items - 1;
+                _inventoryItems[equippedItemId] -= 1;
+                _inventoryItems[itemId] += 1;
             }
 
             _equippedItems[itemType] = itemId;
@@ -53,13 +47,19 @@ namespace Storage.Item
         {
             if (!_equippedItems.TryGetValue(itemType, out string equippedItemId)) return;
 
-            AddItemToInventory(equippedItemId);
+            AddItemToInventory(equippedItemId, false);
+
             _equippedItems.Remove(itemType);
         }
 
         public ItemConfig GetItemById(string id)
         {
             return Items.FirstOrDefault(config => config.Id == id);
+        }
+
+        public List<ItemConfig> GetEquippedItems()
+        {
+            return _equippedItems.Values.Select(GetItemById).ToList();
         }
     }
 }

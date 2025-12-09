@@ -7,6 +7,8 @@ namespace Storage.Character
     public class CharacterStorage : ICharacterParams
     {
         private CharactersParamContainer _characterParam;
+        public CharacterParams CurrentParams => _characterParam.CurrentParams;
+        public CharacterParams BaseParams => _characterParam.BaseParams;
 
         public event Action<CharacterParams> OnParamsChanged;
 
@@ -15,22 +17,11 @@ namespace Storage.Character
             _characterParam = new CharactersParamContainer(CharacterParams.ConvertFromConfig(characterParamsConfig));
         }
 
-        private void UpdateParams(ItemConfig[] purchasedItems)
+        public void UpdateParams(CharacterParams currentParams)
         {
-            CharacterParams newParams = _characterParam.BaseParams.Clone();
+            _characterParam.CurrentParams = currentParams;
 
-            foreach (ItemConfig itemConfig in purchasedItems)
-            {
-                newParams.Armor += itemConfig.Params.Armor;
-                newParams.Damage += itemConfig.Params.Damage;
-                newParams.Health += itemConfig.Params.Health;
-            }
-
-            _characterParam.CurrentParams = newParams;
-
-            OnParamsChanged?.Invoke(CurrentCharacterParams);
+            OnParamsChanged?.Invoke(CurrentParams);
         }
-
-        public CharacterParams CurrentCharacterParams => _characterParam.CurrentParams;
     }
 }
