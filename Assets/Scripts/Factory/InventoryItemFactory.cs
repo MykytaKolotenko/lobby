@@ -4,7 +4,7 @@ using View;
 
 namespace Factory
 {
-    public class InventoryItemFactory : ViewFactory<InventoryItemView, ItemConfig>
+    public class InventoryItemFactory : ViewFactory<InventoryItemView>
     {
         public InventoryItemFactory(GameObject prefab) : base(prefab)
         {

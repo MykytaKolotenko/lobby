@@ -12,7 +12,6 @@ namespace Presenter
 
         public ItemConfig _config;
 
-        public string PresenterId => _view.GetInstanceID().ToString();
         public string ItemId => _config.Id;
         public EItemType ItemType => _config.Type;
 
@@ -29,11 +28,6 @@ namespace Presenter
         public void Subscribe()
         {
             _view.ItemClicked += OnItemClicked;
-        }
-
-        public void Unsubscribe()
-        {
-            _view.ItemClicked -= OnItemClicked;
         }
 
         public void SetParent(RectTransform transform)

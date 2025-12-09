@@ -1,9 +1,8 @@
-﻿using Configs;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Factory
 {
-    public class ViewFactory<T, C> where T : MonoBehaviour where C : ItemConfig
+    public class ViewFactory<T> where T : MonoBehaviour
     {
         private GameObject _prefab;
 
